@@ -1,0 +1,37 @@
+<template name='allUsers'>
+	<h1>All Users:</h1>
+	<ul>
+	{{#each allUsers}}
+		<li>{{shortenUsername emails.[0].address}}</li>
+	{{/each}}
+	</ul>
+</template>
+
+<template name='onlineUsers'>
+	<h3>Online Users:</h3>
+	<ul>
+	{{#each onlineUsers}}
+		<li><a href="/chat/{{_id}}">{{shortenUsername emails.[0].address}}</a></li>
+	{{/each}}
+	</ul>
+</template>
+
+<template name='chatWithUser'>
+	<h1>Chatting with: {{getUser data.otherUserId}}</h1>
+	<div class="message-display">	
+		<ul>
+		{{#each data.messages}}
+			<li>{{getTimeOnly timeSent}}: {{getUser sender}} said:<br>
+				{{message}}<hr>
+			</li>
+		{{/each}}
+		</ul>
+	</div>
+	<div class="new-message">
+		<form class="send-message">			
+			<textarea type="text" name="messageText" required=true placeholder="type your message here..." ></textarea>
+			<br>
+			<input type="submit"/>
+		</form>
+	</div>
+</template>

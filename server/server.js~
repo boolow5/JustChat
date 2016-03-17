@@ -3,5 +3,23 @@ Meteor.publish('allUsers', function () {
 });
 
 Meteor.publish("onlineUsers", function() {
-  return Meteor.users.find({ "status.online": true }, { fields: { ... } });
+  return Meteor.users.find({ "status.online": true });
 });
+
+Meteor.publish("messages", function () {
+	var me = this.userId;
+	console.log(me);
+	return Messages.find({$or: {sender: me, receiver: me} });
+});
+
+/*
+//If you want to do some action if user login or logout.
+Meteor.users.find({ "status.online": true }).observe({
+  added: function(id) {
+    // id just came online
+  },
+  removed: function(id) {
+    // id just went offline
+  }
+});
+*/

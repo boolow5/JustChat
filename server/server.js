@@ -3,7 +3,13 @@ Meteor.publish('allUsers', function () {
 });
 
 Meteor.publish("onlineUsers", function() {
-  return Meteor.users.find({ "status.online": true }, { fields: { ... } });
+  return Meteor.users.find({ "status.online": true });
+});
+
+Meteor.publish("messages", function () {
+	var me = this.userId;
+	console.log(me);
+	return Messages.find({$or: [{sender: me}, {receiver: me}] });
 });
 
 /*
