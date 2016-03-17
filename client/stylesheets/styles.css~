@@ -1,6 +1,13 @@
 body {
 	padding-top: 70px;
+	min-width: 10em;
 }
 .mylogin {
 	margin-left: 1em;
+}
+
+.message-display {
+	height: 20em;
+	width: 20em;
+	overflow: scroll;
 }

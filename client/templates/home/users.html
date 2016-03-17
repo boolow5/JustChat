@@ -8,18 +8,30 @@
 </template>
 
 <template name='onlineUsers'>
+	{{#if currentUser }} 
+	<div class="notification-area">
+		<ul>
+		{{#each notes}}
+			<li>{{title}} - <span class="deleteNote">X</span></li>
+		{{/each}}
+		</ul>
+	</div>
 	<h3>Online Users:</h3>
 	<ul>
 	{{#each onlineUsers}}
 		<li><a href="/chat/{{_id}}">{{shortenUsername emails.[0].address}}</a></li>
 	{{/each}}
 	</ul>
+	{{else}}
+		{{>loginTem}}
+	{{/if}}
 </template>
 
 <template name='chatWithUser'>
+	{{#if currentUser }} 
 	<h4>Me:{{getUser getMe}}</h4>
 	<h1>Chatting with: {{getUser data.otherUserId}}</h1>
-	<div class="message-display">	
+	<div class="message-display" id="display-for-{{data.otherUserId}}">	
 		<ul>
 		{{#each data.messages}}
 			<li>{{getTimeOnly timeSent}}: {{getUser sender}} said:<br>
@@ -35,4 +47,7 @@
 			<input type="submit"/>
 		</form>
 	</div>
+	{{else}}
+		{{>loginTem}}
+	{{/if}}
 </template>

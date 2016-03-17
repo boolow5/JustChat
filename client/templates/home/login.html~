@@ -1,0 +1,3 @@
+<template name='loginTem'>
+	<h1>Please Login to Access everything</h1>
+</template>

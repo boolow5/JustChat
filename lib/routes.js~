@@ -21,16 +21,9 @@ Router.route('/chat/:userID', function(){
 	userID = this.params.userID;
 	console.log("User Id: " + userID);
 	this.render('chatWithUser');
-	this.data = function () {
-		return {
-			'messages': function () {
-				Meteor.subscribe('messages');
-				return [1,2,3,4,5]//Messages.find().fetch();
-			},
-			'otherUserId':function () {
-				return userID;
-			}
-		}
+	onAfterAction= function () {
+		//scrolls the message display to the bottom
+		$("#display-for-"+receiver).animate({ scrollTop: $("#display-for-"+receiver)[0].scrollHeight}, 1000);
 	}
 });
 

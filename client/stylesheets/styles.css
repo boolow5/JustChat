@@ -5,3 +5,9 @@ body {
 .mylogin {
 	margin-left: 1em;
 }
+
+.message-display {
+	height: 20em;
+	width: 20em;
+	overflow: auto;
+}
