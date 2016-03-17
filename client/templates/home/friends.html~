@@ -1,0 +1,11 @@
+<template name='homeFriends'>
+
+</template>
+
+<template name='addFriend'>
+	<h3>Add Friend</h3>
+</template>
+
+<template name='homeAllFriends'>
+	<h1>All Friends</h1>
+</template>

@@ -1,0 +1,3 @@
+<template name='homeChat'>
+	<h1>Chat</h1>
+</template>

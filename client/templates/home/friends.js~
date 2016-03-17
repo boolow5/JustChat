@@ -1,0 +1,65 @@
+
+Template.homeFriends.helpers({
+	otherfriends: function (me) {
+		/*
+		Meteor.subscribe('allUsers');
+		Session.set('currentUser',this.userId);
+		me = Session.get('currentUser');
+		console.log('getting users for - '+ me);
+		return Meteor.users.find({_id: {$not:me}}).fetch();*/
+	},
+	myfriends: function (me) {
+		Meteor.subscribe('allFriends');
+		Session.set('currentUser',this.userId);
+		me = Meteor.user();
+		console.log('getting users for - '+ me);
+		return Friends.find().fetch();
+	},
+	//doesExist: function () {{}
+});
+/*
+Template.homeFriends.events({
+	'click button.add-friend': function (event) {
+		event.preventDefault();
+		console.log('adding a friend ' + this._id);
+		Meteor.call('addFriend', this);
+		console.log('added user');
+	}
+});
+*/
+
+Template.addFriend.events({
+	'submit form.addFriend': function (event) {
+		event.preventDefault();
+		email = event.target.userEmail.value;
+		Meteor.call('emailExists', email, function (error, result) {
+			console.log("Result: "+result);
+			console.log("Error: "+error);
+		});
+		
+		/*
+		console.log(checkEmailExists);
+		if (!checkEmailExists(email)) {
+			console.log(""+email+" does not exist in the users")
+		}else {
+			console.log(""+email+" exists in the users")
+		}
+		
+		//id = getIdByEmail(email);
+		
+		//Meteor.call('addFriend',{'email':email, 'id':id);
+		//console.log('Adding friend from form '+ email + ' with id ' + id);*/
+	}
+});
+
+Template.homeAllFriends.helpers({
+	otherfriends: function () {
+		Meteor.subscribe('allUsers');
+		Session.set('currentUser',this.userId);
+		var me = this.userId;
+		console.log('getting users for - '+ me);
+		var users = Meteor.users.find({_id: {$not:me}}).fetch();
+		console.log(users);
+		return users;
+	}
+});

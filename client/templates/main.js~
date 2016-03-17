@@ -1,0 +1,18 @@
+UI.registerHelper("getFriend", function (friendId) {
+		console.log('Getting a friend ' + friendId);
+		var friend = Friends.find({_id:friendId}).fetch();
+		console.log('Friend')
+		console.log(friend);
+		if (friend.length>0) {
+			return friend[0].emails[0].address;
+		} else {
+			return "Sorry! didn't a get user with this ID.";
+		}
+});
+	
+UI.registerHelper("shortenUsername", function (email) {
+	return email.split('@')[0];
+});
+
+//UI.registerHelper();
+

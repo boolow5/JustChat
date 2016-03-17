@@ -1,0 +1,27 @@
+checkEmailExists = function (email) {
+	Meteor.subscribe('allUsers');
+	var theEmail = email.trim();
+	var emails = Meteor.users.find({"emails[0].address":theEmail}).fetch();
+	/*
+	for (var i=0; i<emails.length; i++) {
+		if (emails[i].emails[0].address== email){
+			return true;
+		}
+	}
+	return false;*/
+	console.log(emails.length);
+	console.log(""+email);
+	return emails.length;
+}
+
+getIdByEmail = function (email) {
+	console.log('Getting a friend ' + friendId);
+	var friend = Friends.find({friend:email}).fetch();
+	console.log('Friend')
+	console.log(friend);
+	if (friend.length>0) {
+		return friend[0]._id;
+	} else {
+		return "Sorry! didn't a get user with this ID.";
+	}
+}

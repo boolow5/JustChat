@@ -1,0 +1,6 @@
+Template.homeChat.helpers({
+	//var receiverId = this.params.recieverId;
+	chat: function () {
+		return Chat.find({}).fetch();
+	}
+});
