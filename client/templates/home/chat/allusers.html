@@ -1,0 +1,8 @@
+<template name='allUsers'>
+	<h1>All Users:</h1>
+	<ul>
+	{{#each allUsers}}
+		<li>{{shortenUsername emails.[0].address}} <a href="#add/{{emails.[0].address}}">Add</a></li>
+	{{/each}}
+	</ul>
+</template>

@@ -1,32 +1,3 @@
-<template name='allUsers'>
-	<h1>All Users:</h1>
-	<ul>
-	{{#each allUsers}}
-		<li>{{shortenUsername emails.[0].address}} <a href="#add/{{emails.[0].address}}">Add</a></li>
-	{{/each}}
-	</ul>
-</template>
-
-<template name='onlineUsers'>
-	{{#if currentUser }}
-	<div class="notification-area">
-		<ul>
-		{{#each notes}}
-			<li>{{title}} - <span class="deleteNote">X</span></li>
-		{{/each}}
-		</ul>
-	</div>
-	<h3>Online Users:</h3>
-	<ul>
-	{{#each onlineUsers}}
-		<li><a href="/chat/{{_id}}">{{shortenUsername emails.[0].address}}</a></li>
-	{{/each}}
-	</ul>
-	{{else}}
-		{{>loginTem}}
-	{{/if}}
-</template>
-
 <template name='chatWithUser'>
 	{{#if currentUser }}
 
@@ -35,7 +6,7 @@
 		<ul>
 			{{notifications}}
 		{{#each data.messages}}
-			<li>{{getTimeOnly timeSent}}:
+			<li>{{getTimeOnly timeSent}} - {{getUser senderId}}:
 				{{message}}<hr>
 			</li>
 		{{/each}}
@@ -51,8 +22,4 @@
 	{{else}}
 		{{>loginTem}}
 	{{/if}}
-</template>
-
-<template name="addUsers">
-	<h1>Added user {{email}}</h1>
 </template>

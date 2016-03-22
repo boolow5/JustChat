@@ -1,5 +1,11 @@
 <template name='layout'>
-	{{>nav}}
-	<div class='mylogin'>{{> loginButtons}}</div>
-	{{>yield}}
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+		<title>JustChat</title>
+	</head>
+	<body>
+		{{>nav}}
+		<div class='mylogin'>{{> loginButtons}}</div>
+		{{>yield}}
+	</body>
 </template>

@@ -6,7 +6,7 @@ Meteor.methods({
 		var convers = mObj.coversId;
 
 		//Messages.insert({'message': message, 'sender':sender, 'receiver':receiver, timeSent:new Date()});
-		Messages.insert({'message': message, between:[sender, receiver], timeSent:new Date()});
+		Messages.insert({'message': message, between:[sender, receiver], timeSent:new Date(), senderId: sender});
 		//Conversations.update({between:{$in: [sender, receiver]}},{"$push":{"messages":{"date":new Date(), "text":message, "sender":sender}}},{upsert:true});
 	},
 	'addFriend': function (email) {

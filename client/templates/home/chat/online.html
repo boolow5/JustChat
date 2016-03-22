@@ -1,0 +1,19 @@
+<template name='onlineUsers'>
+	{{#if currentUser }}
+	<div class="notification-area">
+		<ul>
+		{{#each notes}}
+			<li>{{title}} - <span class="deleteNote">X</span></li>
+		{{/each}}
+		</ul>
+	</div>
+	<h3>Online Users:</h3>
+	<ul>
+	{{#each onlineUsers}}
+		<li><a href="/chat/{{_id}}">{{shortenUsername emails.[0].address}}</a></li>
+	{{/each}}
+	</ul>
+	{{else}}
+		{{>loginTem}}
+	{{/if}}
+</template>

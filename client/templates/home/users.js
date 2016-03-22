@@ -30,16 +30,12 @@ Template.chatWithUser.helpers({
 			}
 		}
 	},
-	'otherEmail':function () {
-		Meteor.subscribe("allUsers");
-		ema = Meteor.users.find({_id:userID}).fetch()[0].emails[0].address;
-	},
 	'isMe':function (userId) {
 		//return userId ==	Meteor.userId();
 		//return true;
 		me = Meteor.userId()
-		console.log("Me "+me);
-		console.log("other "+userId);
+		//console.log("Me "+me);
+		//console.log("other "+userId);
 		if (userId== me) {
 			return "me"
 		}else {
@@ -60,8 +56,8 @@ Template.chatWithUser.events({
 
 		//console.log(userNotifications);
 
-		console.log("Message: "+message+"\nReceiver: "+receiver);
-		console.log(Router.current().params.userID);
+		//console.log("Message: "+message+"\nReceiver: "+receiver);
+		//console.log(Router.current().params.userID);
 
 		$("#display-for-"+receiver).animate({ scrollTop: $("#display-for-"+receiver)[0].scrollHeight}, 1000);
 

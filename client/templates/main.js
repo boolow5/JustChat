@@ -10,7 +10,7 @@ UI.registerHelper("getUser", function (userId) {
 	}else {
 		user = Meteor.users.find({_id:userId}).fetch();
 		if (user.length===1) {
-			return user[0].emails[0];//.address.split('@')[0];
+			return user[0].emails[0].address.split('@')[0];
 		}
 	}
 });
