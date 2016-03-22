@@ -8,8 +8,9 @@ Meteor.publish("onlineUsers", function() {
 
 Meteor.publish("messages", function () {
 	var me = this.userId;
-	console.log(me);
-	return Messages.find({$or: [{sender: me}, {receiver: me}] });
+	//return Conversations.find({"between":me})  //
+	//return Messages.find({$or: [{sender: me}, {receiver: me}] });
+	return Messages.find({between:me });
 });
 
 /*

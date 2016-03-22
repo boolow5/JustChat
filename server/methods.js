@@ -3,14 +3,20 @@ Meteor.methods({
 		var receiver = mObj.receiver;
 		var sender = Meteor.userId();
 		var message = mObj.message;
-		
-		Messages.insert({'message': message, 'sender':sender, 'receiver':receiver, timeSent:new Date()});
-		
-		Notes.insert({to: receiver, from: sender, title: "Your received a new message "});
-		console.log("message sent from server");
-		console.log(Messages.find().count());
+		var convers = mObj.coversId;
+
+		//Messages.insert({'message': message, 'sender':sender, 'receiver':receiver, timeSent:new Date()});
+		Messages.insert({'message': message, between:[sender, receiver], timeSent:new Date()});
+		//Conversations.update({between:{$in: [sender, receiver]}},{"$push":{"messages":{"date":new Date(), "text":message, "sender":sender}}},{upsert:true});
 	},
-	'deleteNotice': function (noteId) {
-		Notes.delete({_id:noteId});
+	'addFriend': function (email) {
+		console.log("Adding email: "+ email +" to your friends....");
+		me = Meteor.userId();
+		friends = Friends.find({_id:me}).fetch();
+		if(!friends.length){
+			console.log("there is no friends");
+		}else {
+			console.log("There is some friends");
+		}
 	}
 });

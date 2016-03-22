@@ -2,13 +2,13 @@
 	<h1>All Users:</h1>
 	<ul>
 	{{#each allUsers}}
-		<li>{{shortenUsername emails.[0].address}}</li>
+		<li>{{shortenUsername emails.[0].address}} <a href="#add/{{emails.[0].address}}">Add</a></li>
 	{{/each}}
 	</ul>
 </template>
 
 <template name='onlineUsers'>
-	{{#if currentUser }} 
+	{{#if currentUser }}
 	<div class="notification-area">
 		<ul>
 		{{#each notes}}
@@ -28,20 +28,21 @@
 </template>
 
 <template name='chatWithUser'>
-	{{#if currentUser }} 
-	<h4>Me:{{getUser getMe}}</h4>
-	<h1>Chatting with: {{getUser data.otherUserId}}</h1>
-	<div class="message-display" id="display-for-{{data.otherUserId}}">	
+	{{#if currentUser }}
+
+	<h1>Chatting with: {{shortenUsername otherEmail}}</h1>
+	<div class="message-display" id="display-for-{{data.otherUserId}}">
 		<ul>
+			{{notifications}}
 		{{#each data.messages}}
-			<li>{{getTimeOnly timeSent}}: {{getUser sender}} said:<br>
+			<li>{{getTimeOnly timeSent}}:
 				{{message}}<hr>
 			</li>
 		{{/each}}
 		</ul>
 	</div>
 	<div class="new-message">
-		<form class="send-message">			
+		<form class="send-message">
 			<textarea type="text" name="messageText" required=true placeholder="type your message here..." ></textarea>
 			<br>
 			<input type="submit"/>
@@ -50,4 +51,8 @@
 	{{else}}
 		{{>loginTem}}
 	{{/if}}
+</template>
+
+<template name="addUsers">
+	<h1>Added user {{email}}</h1>
 </template>
