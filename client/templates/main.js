@@ -26,6 +26,21 @@ UI.registerHelper("getMe", function () {
 	return Meteor.userId();
 });
 
+UI.registerHelper("isFriend", function (id) {
+	var Me = Meteor.users.findOne({_id:Meteor.userId()});
+	var friends = [];
+	if (Me.friends){
+		friends = Me.friends;
+	}
+	for (var i=0; i<friends.length; i++){
+		if (id==friends[i]){
+			return true
+		}
+	}
+	return false
+
+});
+
 UI.registerHelper("getNotes", function () {
 	// but the code for notifying user
 	var startDate = new Date();

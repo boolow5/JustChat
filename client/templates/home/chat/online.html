@@ -1,0 +1,11 @@
+<template name="onlineusers">
+  <h1>Online Friends</h1>
+  <ul>
+    {{#each users}}
+      {{#if isFriend _id}}
+        <li><a href="/chat/{{_id}}">{{shortenUsername emails.[0].address}}</a></li>
+      {{/if}}
+    {{/each}}
+  </ul>
+
+</template>

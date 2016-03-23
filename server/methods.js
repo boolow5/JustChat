@@ -11,12 +11,10 @@ Meteor.methods({
 	},
 	'addFriend': function (email) {
 		console.log("Adding email: "+ email +" to your friends....");
-		me = Meteor.userId();
-		friends = Friends.find({_id:me}).fetch();
-		if(!friends.length){
-			console.log("there is no friends");
-		}else {
-			console.log("There is some friends");
-		}
+		me = Meteor.users.findOne({_id:Meteor.userId()});
+		otherUser = Meteor.users.findOne({"emails.address":email});
+
+		Meteor.users.update({_id:me._id},{$push:{"friends":otherUser._id}},{upsert:true});
+		Meteor.users.update({_id:otherUser._id},{$push:{"friends":me._id}},{upsert:true});
 	}
 });
