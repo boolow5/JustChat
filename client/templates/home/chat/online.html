@@ -1,4 +1,5 @@
 <template name="onlineusers">
+  {{#if currentUser }}
   <h1>Online Friends</h1>
   <ul>
     {{#each users}}
@@ -7,5 +8,8 @@
       {{/if}}
     {{/each}}
   </ul>
+  {{else}}
+		{{>loginTem}}
+  {{/if}}
 
 </template>

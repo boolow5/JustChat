@@ -1,6 +1,6 @@
 <template name='allUsers'>
 	{{>adduser}}
-	
+
 	<h1>All Users:</h1>
 	<ul>
 	{{#each allUsers}}
@@ -41,8 +41,8 @@
 		<ul>
 			{{notifications}}
 		{{#each data.messages}}
-			<li>{{getTimeOnly timeSent}}:
-				{{message}}<hr>
+			<li class="message-item">{{getTimeOnly timeSent}}| <em>{{shortenUsername sentBy}}</em> said:
+				<strong>{{message}}</strong>
 			</li>
 		{{/each}}
 		</ul>
@@ -57,8 +57,4 @@
 	{{else}}
 		{{>loginTem}}
 	{{/if}}
-</template>
-
-<template name="addUsers">
-	<h1>Added user {{email}}</h1>
 </template>

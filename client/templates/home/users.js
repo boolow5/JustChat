@@ -33,6 +33,7 @@ Template.chatWithUser.helpers({
 	'otherEmail':function () {
 		Meteor.subscribe("allUsers");
 		ema = Meteor.users.find({_id:userID}).fetch()[0].emails[0].address;
+		if (ema) return ema;
 	},
 	'isMe':function (userId) {
 		//return userId ==	Meteor.userId();
